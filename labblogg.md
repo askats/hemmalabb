@@ -47,3 +47,14 @@
   Förväntat, eftersom VirtualBox behöver en hjälptjänst.
   Notering: oväntade bakgrundsobjekt kan vara tecken på
   skadlig kod som försöker uppnå persistens.
+
+## 2026-09-24 – Steg 6: Operativsystem
+- Laddat ner Ubuntu Server 26.04.1 LTS (amd64) från ubuntu.com
+- Laddat ner Kali Linux 2026.2 installer (amd64) från kali.org
+- Verifierat båda filernas SHA256-kontrollsummor mot de officiella
+  (shasum -a 256 --check gav OK för båda)
+- Valde Ubuntu Server LTS eftersom den får långvariga
+  säkerhetsuppdateringar och är vanlig i företagsmiljöer
+- Valde Kalis installer istället för färdig VM-avbild för att
+  själv välja användarnamn och lösenord, istället för
+  standardinloggningen kali/kali som alla känner till
