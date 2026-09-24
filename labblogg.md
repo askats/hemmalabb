@@ -75,3 +75,19 @@
 - Uppdaterat systemet med sudo apt update och sudo apt upgrade
 - IP-adress i VirtualBox NAT-nätverk: 10.0.2.15/24
 - Tagit ögonblicksbild "Ren installation, uppdaterad"
+
+## 2026-09-24 – Steg 8: Kali Linux
+- Skapat VM "kali" i VirtualBox: 1 CPU, 2048 MB RAM,
+  25 GB dynamisk disk
+- Installerat Kali Linux 2026.2 med grafisk installation
+- Användare: "labbkali", eget unikt lösenord, sparat i
+  lösenordshanterare. Separat användarnamn från servern
+  för att lättare skilja maskinerna åt i loggar
+- Valde skrivbordsmiljön Xfce, den lättaste, p.g.a.
+  begränsat RAM. Verktygspaket: top10 och default
+- Uppdaterat med sudo apt full-upgrade
+- IP-adress: 10.0.2.15/24, samma som servern
+- Observation: Båda maskinerna använder VirtualBox NAT-läge,
+  där varje maskin får ett eget isolerat nätverk. De når
+  internet men inte varandra. Nästa steg: gemensamt nätverk.
+- Tagit ögonblicksbild "Ren installation, uppdaterad"
