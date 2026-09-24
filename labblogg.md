@@ -26,3 +26,14 @@
 - Kontrollerat inställningarna med: git config --global --list
 - Notering: Terminalens prompt visar mitt riktiga namn och datornamn.
   Måste döljas i skärmdumpar och utskrifter som publiceras.
+
+## 2026-09-24 – Steg 4: Koppla projektet till GitHub
+- Gjort projektmappen till ett Git-repo (git init)
+- Skapat .gitignore som utesluter macOS-filen .DS_Store,
+  eftersom den kan avslöja mappnamn och filstruktur
+- Skapat en SSH-nyckel (ed25519) skyddad med lösenfras,
+  sparad i macOS nyckelring
+- Lagt till den publika nyckeln på GitHub
+- Verifierat GitHubs officiella fingeravtryck innan första
+  anslutningen, som skydd mot man-in-the-middle-attacker
+- Gjort första uppladdningen (push) till GitHub
