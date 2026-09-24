@@ -58,3 +58,20 @@
 - Valde Kalis installer istället för färdig VM-avbild för att
   själv välja användarnamn och lösenord, istället för
   standardinloggningen kali/kali som alla känner till
+
+## 2026-09-24 – Steg 7: Ubuntu Server
+- Skapat VM "ubuntu-server" i VirtualBox: 1 CPU, 25 GB dynamisk disk,
+  2048 MB RAM under installation, sänkt till 1024 MB efteråt
+- Installerat Ubuntu Server 26.04.1 LTS manuellt, utan obevakad
+  installation, för att själv kontrollera alla val
+- Disk: LVM utan LUKS-kryptering. Medvetet val eftersom labbet
+  saknar känslig data och kryptering kräver lösenfras vid varje
+  start. I produktion med känslig data är diskkryptering viktig.
+- Användare: "labbadmin", inte mitt riktiga namn och inte
+  förutsägbara namn som admin eller root. Unikt lösenord,
+  sparat i lösenordshanterare
+- Installerat OpenSSH-server. Lösenordsinloggning tillåten
+  tills vidare, ska ersättas med nyckelinloggning senare
+- Uppdaterat systemet med sudo apt update och sudo apt upgrade
+- IP-adress i VirtualBox NAT-nätverk: 10.0.2.15/24
+- Tagit ögonblicksbild "Ren installation, uppdaterad"
