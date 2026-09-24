@@ -91,3 +91,30 @@
   där varje maskin får ett eget isolerat nätverk. De når
   internet men inte varandra. Nästa steg: gemensamt nätverk.
 - Tagit ögonblicksbild "Ren installation, uppdaterad"
+
+## 2026-09-24 – Steg 9: Gemensamt nätverk
+- Skapat NAT-nätverket "labbnat" i VirtualBox: 10.10.10.0/24, DHCP aktiverat
+- Kopplat båda maskinerna till labbnat istället för vanligt NAT-läge,
+  så att de kan nå varandra och internet, men inte nås utifrån
+- Adresser via DHCP: ubuntu-server 10.10.10.3, kali 10.10.10.4
+- Testat med ping:
+  - Kali till servern: 0% paketförlust
+  - Servern till Kali: 0% paketförlust
+  - Kali till internet (8.8.8.8): 0% paketförlust, cirka 20 ms
+- Felsökning: "Name or service not known" vid ping berodde på ett
+  skrivfel i IP-adressen. Ping tolkade texten som ett värdnamn.
+
+### Nätverkskarta
+
+```mermaid
+flowchart TB
+    internet((Internet))
+    mac[MacBook Air - värddator]
+    nat[VirtualBox NAT-nätverk labbnat<br/>10.10.10.0/24]
+    server[ubuntu-server<br/>10.10.10.3]
+    kali[kali<br/>10.10.10.4]
+    internet --- mac
+    mac --- nat
+    nat --- server
+    nat --- kali
+```
