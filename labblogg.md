@@ -37,3 +37,13 @@
 - Verifierat GitHubs officiella fingeravtryck innan första
   anslutningen, som skydd mot man-in-the-middle-attacker
 - Gjort första uppladdningen (push) till GitHub
+
+## 2026-09-24 – Steg 5: VirtualBox
+- Laddat ner VirtualBox 7.2.20 för Intel-Mac från virtualbox.org
+- Verifierat filens SHA256-kontrollsumma mot den officiella listan
+  för att säkerställa att filen är äkta och oförändrad
+- Installerat VirtualBox och raderat installationsfilen efteråt
+- macOS meddelade att VirtualBox lagt till bakgrundsobjekt.
+  Förväntat, eftersom VirtualBox behöver en hjälptjänst.
+  Notering: oväntade bakgrundsobjekt kan vara tecken på
+  skadlig kod som försöker uppnå persistens.
