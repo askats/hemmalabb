@@ -173,3 +173,16 @@ flowchart TB
   brandväggen aktiv
 - Lärdom: klistrade in nästa kommando vid ufw:s y/n-fråga, vilket
   tolkades som nej. Läs alltid vad ett kommando frågar innan svar.
+
+## 2026-09-25 – Härdning, steg 7: Automatiska säkerhetsuppdateringar
+- Kontrollerat istället för att anta att unattended-upgrades är aktivt:
+  - Tjänsten unattended-upgrades: active (running)
+  - /etc/apt/apt.conf.d/20auto-upgrades: Update-Package-Lists "1"
+    och Unattended-Upgrade "1" (dagligen)
+  - Timrarna apt-daily.timer och apt-daily-upgrade.timer är
+    schemalagda och har kört (systemctl list-timers)
+  - Torrkörning (unattended-upgrade --dry-run) utan fel
+- Observation: tjänsten unattended-upgrades hanterar bara avslut
+  vid avstängning. De dagliga uppdateringarna startas av systemd-timers.
+- Varför: kända säkerhetshål rättas automatiskt utan att någon
+  behöver komma ihåg att uppdatera
