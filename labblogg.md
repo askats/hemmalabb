@@ -138,3 +138,24 @@ flowchart TB
   på 25 GB. Ubuntus LVM-förval lämnar resten oanvänt.
 - Lärdom: råkade klistra in ett lösenord i terminalen. Raderade
   raden ur ~/.zsh_history, eftersom terminalhistorik sparar allt.
+
+## 2026-09-25 – Härdning, steg 5: Stängt av lösenordsinloggning via SSH
+- Före (sudo sshd -T):
+  - passwordauthentication yes
+  - permitrootlogin prohibit-password
+  - kbdinteractiveauthentication no
+- Hittade /etc/ssh/sshd_config.d/50-cloud-init.conf, skapad av
+  installationen, som slog på lösenordsinloggning
+- Skapade /etc/ssh/sshd_config.d/01-hardening.conf med:
+  PasswordAuthentication no, KbdInteractiveAuthentication no,
+  PermitRootLogin no. Filen läses före 50-cloud-init.conf och
+  första värdet vinner, så härdningen samlas i en egen fil
+- Kontrollerade syntaxen med sudo sshd -t innan omstart
+- Efter: alla tre inställningar = no
+- Testade i ett separat fönster med den första sessionen öppen,
+  som skydd mot att låsa ute mig själv:
+  - Nyckelinloggning fungerar
+  - Lösenordsförsök nekas: "Permission denied (publickey)"
+- Varför: skyddar mot automatiserad lösenordsgissning (brute force),
+  och root kan inte logga in direkt, så all administration sker via
+  personliga konton och sudo, vilket syns i loggarna
