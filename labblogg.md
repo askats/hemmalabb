@@ -159,3 +159,17 @@ flowchart TB
 - Varför: skyddar mot automatiserad lösenordsgissning (brute force),
   och root kan inte logga in direkt, så all administration sker via
   personliga konton och sudo, vilket syns i loggarna
+
+## 2026-09-25 – Härdning, steg 6: Brandvägg (ufw)
+- Före: ufw inaktiv (Status: inactive)
+- Standardpolicy: neka all inkommande trafik, tillåt all utgående
+  (default deny)
+- Tillåtit SSH (profilen OpenSSH, 22/tcp) INNAN brandväggen slogs på,
+  och kontrollerat regeln med ufw show added, för att inte låsa
+  ute mig själv
+- Efter: Status active, startar automatiskt vid systemstart,
+  loggning på (low). Enda öppna port: 22/tcp för IPv4 och IPv6
+- Testat att SSH-inloggning fungerar i ett nytt fönster med
+  brandväggen aktiv
+- Lärdom: klistrade in nästa kommando vid ufw:s y/n-fråga, vilket
+  tolkades som nej. Läs alltid vad ett kommando frågar innan svar.
