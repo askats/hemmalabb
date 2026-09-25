@@ -118,3 +118,23 @@ flowchart TB
     nat --- server
     nat --- kali
 ```
+
+## 2026-09-25 – Härdning, steg 1–4: SSH-inloggning med nyckel
+- Port forwarding i labbnat: 127.0.0.1:2222 på Macen till 10.10.10.3:22.
+  Bunden till 127.0.0.1 så att bara Macen själv kan nå porten,
+  inte andra enheter på samma wifi
+- Verifierat serverns ED25519-fingeravtryck med ssh-keygen -lf
+  innan första anslutningen
+- Skapat en separat SSH-nyckel (labb_ed25519) med lösenfras,
+  enligt principen en nyckel per syfte
+- Lagt in den publika nyckeln på servern med ssh-copy-id och
+  kontrollerat att authorized_keys bara innehåller den nyckeln
+- Skapat genvägen "labbserver" i ~/.ssh/config, med
+  IdentitiesOnly så att GitHub-nyckeln aldrig skickas till servern
+- Resultat: inloggning med nyckel fungerar utan serverlösenord
+- Observation: inloggningar syns från 10.10.10.1 (NAT-nätverkets
+  gateway), inte från Macens adress. Viktigt att veta vid logganalys.
+- Observation: rotfilsystemet använder bara 11,2 GB av disken
+  på 25 GB. Ubuntus LVM-förval lämnar resten oanvänt.
+- Lärdom: råkade klistra in ett lösenord i terminalen. Raderade
+  raden ur ~/.zsh_history, eftersom terminalhistorik sparar allt.
